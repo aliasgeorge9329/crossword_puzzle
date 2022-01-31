@@ -1,6 +1,8 @@
 import Crossword from "@jaredreisinger/react-crossword";
 import styles from "./crossword.module.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
+import Timer from "./Timer";
+import { UserContext } from "@/context/userContext";
 
 export default function CrosswordPuzzle() {
   const data = {
@@ -22,29 +24,18 @@ export default function CrosswordPuzzle() {
     },
   };
   const [correctanswer, setCorrectAnswer] = useState([]);
-  const [timeLeft, setTimeLeft] = useState(2);
+  const [count, setCount] = useState(0);
+
   const [attempt, setAttempt] = useState(true);
 
   function OnCorrect(direction, num) {
     if (correctanswer.indexOf(num) === -1) {
       setCorrectAnswer((oldArray) => [...oldArray, num]);
+      setCount((t) => {
+        return t + 1;
+      });
     }
   }
-
-  function Time() {
-    setInterval(() => {
-      if (timeLeft <= 0) {
-        console.log("called");
-        setAttempt(false);
-        return;
-      }
-      setTimeLeft((t) => t - 1);
-    }, 1000);
-  }
-
-  useEffect(() => {
-    Time();
-  }, []);
 
   useEffect(() => {
     if (attempt) {
@@ -58,7 +49,7 @@ export default function CrosswordPuzzle() {
 
   const Completionist = () => (
     <>
-      <span style={{ color: "red" }}>Timer is Over!!!</span>
+      <span style={{ color: "red" }}>Timer is Up!!!</span>
       {correctanswer.length !== 0 ? (
         <p>
           The correct Answers are:
@@ -74,15 +65,9 @@ export default function CrosswordPuzzle() {
 
   return (
     <>
-      {attempt ? (
-        <div className={styles.timer}>
-          {timeLeft > 60 ? Math.floor(timeLeft / 60) : 0}
-          {`: ${timeLeft % 60}`}
-        </div>
-      ) : (
-        <Completionist />
-      )}
-
+      <div className={styles.timer}>
+        {attempt ? <Timer setAttempt={setAttempt} /> : <Completionist />}
+      </div>
       <div style={{ width: "65%" }} className={styles.main}>
         <Crossword
           data={data}
@@ -91,11 +76,11 @@ export default function CrosswordPuzzle() {
           useStorage={true}
           theme={{
             columnBreakpoint: "9999px",
-            gridBackground: "#acf",
+            gridBackground: "black",
             cellBackground: "#ffe",
-            cellBorder: "#fca",
+            cellBorder: "grey",
             textColor: "black",
-            numberColor: "#9f9",
+            numberColor: "blue",
             focusBackground: "#f00",
             highlightBackground: "#f99",
           }}
