@@ -11,7 +11,13 @@
   margin-top: 30px;
   font-size: 3rem;
 }
-.timer {
+.finishbtn {
+  font-size: 2rem;
+  position: absolute;
+  left: 85vw;
+  bottom: 4vw;
+  background-color: white;
+  cursor: pointer;
 }
 
 .timer p {

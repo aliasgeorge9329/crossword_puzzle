@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 
-export default function timer({ setAttempt }) {
-  const [timeLeft, setTimeLeft] = useState(5);
-
+export default function Timer({ Stopattempt }) {
+  let total_time = 1000;
+  const [timeLeft, setTimeLeft] = useState(total_time);
   function Time() {
     let timer = setInterval(() => {
       setTimeLeft((t) => {
         if (t > 0) {
           return t - 1;
         } else {
-          setAttempt(false);
+          Stopattempt();
           clearInterval(timer);
         }
       });
