@@ -23,7 +23,6 @@ export default function Register() {
       router.push("/");
       return;
     }
-    if (user) setName(user.displayName);
     if (attempt === undefined) {
       const res = getMe(user.uid);
       res.then((data) => {

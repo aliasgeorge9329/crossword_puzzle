@@ -43,9 +43,11 @@ export default function Index() {
         }
       );
       logout(ResetAllState);
-    } else {
-      logout(ResetAllState);
     }
+    // } else if(attempt) {
+
+    //   // logout(ResetAllState);
+    // }
   }, [notverified, user]);
 
   const [leaderboard, setLeaderBoard] = useState([]);
