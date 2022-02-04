@@ -109,7 +109,7 @@
   font-weight: light;
 }
 .resultsrank {
-  display: block;
+  /* display: block; */
   background: #686ef9;
   color: white !important;
   font-weight: bold;
@@ -117,6 +117,9 @@
   height: 34px;
   text-align: center;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .positions {
   vertical-align: middle;
