@@ -3,6 +3,7 @@
   margin: auto;
   margin-top: 10vh;
 }
+
 .brandtitle {
   text-align: center;
   padding: 10px;
@@ -15,11 +16,11 @@
   border-radius: 4px;
   font-weight: 600;
   margin: 0 10px;
-  width: 8%;
+  width: 120px;
   padding: 10px 0;
   box-shadow: 0 0 20px rgba(104, 85, 224, 0.2);
   transition: 0.4s;
-  position: fixed;
+  position: absolute;
   top: 20px;
   right: 20px;
   font-size: 1rem;
@@ -46,15 +47,35 @@
   .main {
     width: 90vw;
   }
+  .brandtitle {
+    margin-top: 40px;
+  }
 }
 
 @media (max-width: 550px) {
   .brandtitle {
     font-size: 1.2rem;
+    margin-top: 50px;
   }
 
   .main {
     width: 95vw;
+    margin-top: 5vh;
+  }
+  .logbtn button {
+    width: 100px;
+  }
+  .main span {
+    font-size: 0.9rem;
+  }
+  .main h1 {
+    font-size: 0.8rem;
+  }
+
+  .laddernav h1 {
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 }
 
