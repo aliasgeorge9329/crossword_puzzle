@@ -27,7 +27,7 @@ export default function Index() {
   }, [user, loading]);
 
   useEffect(() => {
-    if (notverified && user) {
+    if (notverified) {
       toast.error(
         `Sorry ${
           user.displayName.split(" ")[0]
@@ -48,7 +48,7 @@ export default function Index() {
 
     //   // logout(ResetAllState);
     // }
-  }, [notverified, user]);
+  }, [notverified]);
 
   const [leaderboard, setLeaderBoard] = useState([]);
 
@@ -98,7 +98,9 @@ export default function Index() {
                   setAttempt,
                   setName,
                   setCrossWord,
-                  setNotverified
+                  setNotverified,
+                  logout,
+                  ResetAllState
                 )
               }
             >

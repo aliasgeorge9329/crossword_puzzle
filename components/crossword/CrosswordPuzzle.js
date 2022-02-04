@@ -159,9 +159,9 @@ export default function CrosswordPuzzle() {
 
       setTimeout(() => {
         cross.current.reset();
-        logout(ResetAllState);
         router.push("/");
-      }, 10000);
+        logout(ResetAllState);
+      }, 5000);
     } else {
       toast.error("Already attempted!", {
         position: "top-right",
@@ -244,7 +244,7 @@ export default function CrosswordPuzzle() {
         ) : (
           <>
             <span style={{ color: "red" }}>Timer is Up!!!</span>
-            {correctanswer.length !== 0 ? (
+            {correctanswer !== null && correctanswer.length !== 0 ? (
               <p>
                 The correct Answers are:
                 {correctanswer.map((each) => {

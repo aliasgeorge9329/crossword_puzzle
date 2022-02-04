@@ -27,9 +27,10 @@ export default function Register() {
       const res = getMe(user.uid);
       res.then((data) => {
         setAttempt(data.attempt);
+        if (data.attempt) router.push("/");
       });
     }
-  }, [user, loading]);
+  }, [user]);
 
   async function handlesubmit(e) {
     e.preventDefault();
