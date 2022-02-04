@@ -127,3 +127,16 @@
 .laddernavresultsplayers:hover {
   background: #1a1a1a;
 }
+
+.gold {
+  color: #ffd700;
+}
+.silver {
+  color: #c0c0c0;
+}
+.bronze {
+  color: #cd7f32;
+}
+.normal {
+  color: rgb(255, 255, 255);
+}

@@ -85,6 +85,18 @@ export default function Index() {
     }
   }, [attempt, name]);
 
+  function Rankcolor(index) {
+    if (index === 2) {
+      return styles.bronze;
+    } else if (index === 1) {
+      return styles.silver;
+    } else if (index === 0) {
+      return styles.gold;
+    } else {
+      return styles.normal;
+    }
+  }
+
   return (
     <>
       <div className={styles.logbtn}>
@@ -145,13 +157,15 @@ export default function Index() {
                     </span>
                   </div>
                   <div className={styles.resultscol}>
-                    <span>{each.name}</span>
+                    <span className={Rankcolor(index)}>{each.name}</span>
                   </div>
                   <div className={styles.resultscol}>
-                    <span>{each.count}</span>
+                    <span className={Rankcolor(index)}>{each.count}</span>
                   </div>
                   <div className={styles.resultscol}>
-                    <span>{each.timetook / 1000}</span>
+                    <span className={Rankcolor(index)}>
+                      {each.timetook / 1000}
+                    </span>
                   </div>
                 </div>
               </div>
