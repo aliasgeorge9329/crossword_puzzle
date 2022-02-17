@@ -27,22 +27,46 @@ export default function CrosswordPuzzle() {
   const [html, setHtml] = useState(false);
 
   const databackup = {
-    across: {
-      1: {
-        clue: "one plus one",
-        answer: "TWO",
-        row: 0,
-        col: 0,
+   across: {
+        2: {
+          clue: 'Which Tathva event provides a platform for researchers to present their research topics?',
+          answer: 'BLUEPRINT',
+          row: 2,
+          col: 4,
+        },
+        3: {
+            clue: 'JEE Mock exam conducted by NitC is called',
+            answer: 'ZEROTHATTEMPT',
+            row: 4,
+            col: 0,
+          },
+          5: {
+            clue: 'The first principal of NITC was? ',
+            answer: 'MVKESAVARAO',
+            row: 7,
+            col: 4,
+          },
+          6: {
+            clue: 'WHO INAUGURATED THE ARCHITECTURE DEPARTMENT BLOCK?',
+            answer: 'SHANKARDAYAL',
+            row: 10,
+            col: 4,
+          },
       },
-    },
-    down: {
-      2: {
-        clue: "three minus two",
-        answer: "ONE",
-        row: 0,
-        col: 2,
-      },
-    },
+      down: {
+        1: {
+          clue: 'AN AREA IN CAMPUS WHERE ONCERTS OR MUSIC PROGRAMS ARE HELD',
+          answer: 'CREATIVEZONE',
+          row: 0,
+          col: 7,
+        },
+        4: {
+            clue: 'THIS YEAR’S MASCOT’S NAME?',
+            answer: 'METVA',
+            row: 4,
+            col: 10,
+          },
+    }
   };
 
   const {
@@ -145,7 +169,7 @@ export default function CrosswordPuzzle() {
         console.error(err);
       }
 
-      cross.current.fillAllAnswers();
+      // cross.current.fillAllAnswers();
       toast.success("Attempt saved", {
         position: "top-right",
         autoClose: 1500,
