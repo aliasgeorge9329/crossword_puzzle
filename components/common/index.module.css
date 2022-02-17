@@ -107,6 +107,7 @@ border-radius: 7.93569px; */
 }
 .laddertitle {
   flex: 2;
+  margin-bottom: 30px;
 }
 
 .laddernav h1 {
