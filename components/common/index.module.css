@@ -2,39 +2,52 @@
   width: 70vw;
   margin: auto;
   margin-top: 10vh;
+  border: 2px ridge #1faeff;
+  border-radius: 25px;
+  /* background-color: rgb(248, 248, 248); */
+  margin-bottom: 50px;
+  padding: 20px 0px;
 }
 
 .brandtitle {
+  font-family: BatmanForeverAlternate;
   text-align: center;
   padding: 10px;
   font-size: 1.7rem;
+  margin-top: 40px;
 }
 
 .logbtn button {
+  font-family: BatmanForeverAlternate;
   cursor: pointer;
-  border: 0;
-  border-radius: 4px;
+  /* border: 0;
+  border-radius: 4px; */
   font-weight: 600;
   margin: 0 10px;
   width: 120px;
   padding: 10px 0;
-  box-shadow: 0 0 20px rgba(104, 85, 224, 0.2);
+  background: rgba(31,174,255,.11);
+  border: 0.5px solid #1faeff;
+/* box-shadow: 0px 0px 7.93569px rgba(115, 187, 228, 0.4);
+border-radius: 7.93569px; */
   transition: 0.4s;
   position: absolute;
   top: 20px;
   right: 20px;
   font-size: 1rem;
+  border-radius: 10px;
+  color: #1faeff;
 }
 
-.logbtn button {
+/* .logbtn button {
   color: white;
   background-color: rgba(104, 85, 224, 1);
-}
+} */
 
 .logbtn button:hover {
   color: white;
   box-shadow: 0 0 20px rgba(104, 85, 224, 0.6);
-  background-color: rgba(104, 85, 224, 1);
+  background-color: rgb(8, 0, 63);
 }
 
 @media (max-width: 1100px) {
@@ -54,28 +67,34 @@
 
 @media (max-width: 550px) {
   .brandtitle {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-top: 50px;
   }
 
   .main {
-    width: 95vw;
-    margin-top: 5vh;
+    width: 90vw;
+    margin-top: 7vh;
   }
   .logbtn button {
     width: 100px;
   }
   .main span {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   .main h1 {
     font-size: 0.8rem;
   }
 
   .laddernav h1 {
-    font-size: 10px;
+    font-size: 40px;
     font-weight: bold;
     text-transform: uppercase;
+  }
+  .laddernavresults label{
+    font-size: 15px;
+  }
+  .laddernavresults{
+    padding: 3px;
   }
 }
 
@@ -83,17 +102,18 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  background: #5055cb;
   padding: 10px 25px;
   border-radius: 10px;
-  border: 1px solid #686ef9;
 }
 .laddertitle {
   flex: 2;
 }
 
 .laddernav h1 {
-  font-size: 20px;
+  font-family: BatmanForeverAlternate;
+  text-align: center;
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -103,20 +123,26 @@
   display: flex;
   flex-wrap: wrap;
   padding: 15px 25px;
+  margin: 30px;
 }
 .laddernavresults label {
-  font-size: 18px;
+
   font-weight: bold;
 }
-.laddernavresultscol,
-.resultscol {
+.laddernavresultscol
+{
+  font-size: 18px;
   flex: 1;
+  color: rgb(255, 255, 255);
+  font-family: BatmanForeverAlternate;
+  text-align: center;
 }
+
 .laddernavresults {
   margin: 5px 0px;
 }
 .laddernavresultsplayers {
-  background: #1d1d1d;
+  /* background: #1d1d1d; */
   border-radius: 10px;
   margin: 5px 0px;
   align-items: center;
@@ -126,15 +152,21 @@
 }
 .resultscol {
   font-size: 18px;
-  color: #747474;
   font-weight: light;
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Courier Prime', monospace;
 }
 .resultsrank {
   /* display: block; */
-  background: #686ef9;
-  color: white !important;
+  background: #000352;
+  color: rgb(255, 254, 254) !important;
   font-weight: bold;
-  width: 34px;
+  width: 36px;
+  text-align: center;
   height: 34px;
   text-align: center;
   border-radius: 50%;
@@ -146,18 +178,21 @@
   vertical-align: middle;
 }
 .laddernavresultsplayers:hover {
-  background: #1a1a1a;
+  background: #202020;
+  border-radius: 20px;
+  /* padding:10px 00px; */
 }
 
 .gold {
-  color: #ffd700;
+  color: #DAA520;
 }
 .silver {
-  color: #c0c0c0;
+  color: #D3D3D3;
 }
 .bronze {
-  color: #cd7f32;
+  color: #b08d57;
 }
 .normal {
   color: rgb(255, 255, 255);
 }
+
