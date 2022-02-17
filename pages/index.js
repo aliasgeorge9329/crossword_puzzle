@@ -173,7 +173,7 @@ export default function Index() {
           })
         ) : (
           <h1 style={{ textAlign: "center", marginTop: "60px" }}>
-            Not Available
+            Loading ...
           </h1>
         )}
       </div>
