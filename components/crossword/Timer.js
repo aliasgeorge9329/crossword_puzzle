@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
+import getMe from "@/lib/getMe";
 
-export default function Timer({ Stopattempt }) {
-  let total_time = 1000;
-  const [timeLeft, setTimeLeft] = useState(total_time);
+export default function Timer({ Stopattempt}) {
+
+  const [timeLeft, setTimeLeft] = useState();
   function Time() {
     let timer = setInterval(() => {
       setTimeLeft((t) => {
@@ -17,13 +18,22 @@ export default function Timer({ Stopattempt }) {
   }
 
   useEffect(() => {
-    Time();
+
+    const res = getMe(localStorage.getItem("uid"));
+    res.then((data) => {
+     const date = new Date(data.starttime)
+      const endtime = (date.getTime() + 1*60000)
+      const timelef = Math.round((endtime - (new Date()).getTime())/1000)
+      setTimeLeft(timelef);
+      Time();
+    });
+
   }, []);
 
   return (
     <>
       {timeLeft > 60 ? Math.floor(timeLeft / 60) : 0}
-      {`: ${timeLeft % 60}`}
+     {`: ${timeLeft % 60}`}
     </>
   );
 }
