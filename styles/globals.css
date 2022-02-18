@@ -28,3 +28,10 @@ body {
     font-size: 1rem;
   }
 }
+
+@media (max-width: 500px) {
+  .clue{
+    font-size: 0.9rem;
+  }
+}
+
