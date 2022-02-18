@@ -20,14 +20,14 @@ import {
   where,
 } from "firebase/firestore";
 import getMe from "@/lib/getMe";
+import getCrossword from "@/lib/getCrossword";
 
 export default function CrosswordPuzzle() {
   const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
   const [html, setHtml] = useState(false);
-
-  const databackup = {
-   across: {
+  const databack = {
+    across: {
         2: {
           clue: 'Which Tathva event provides a platform for researchers to present their research topics?',
           answer: 'BLUEPRINT',
@@ -67,7 +67,7 @@ export default function CrosswordPuzzle() {
             col: 10,
           },
     }
-  };
+}
 
   const {
     name,
@@ -78,6 +78,7 @@ export default function CrosswordPuzzle() {
     starttime,
     setStarttime,
     crossword,
+    setCrossWord,
     endTime,
     setEndTime,
     ResetAllState,
@@ -118,23 +119,23 @@ export default function CrosswordPuzzle() {
     res.then((data) => {
       setAttempt(data.attempt);
       setStarttime(new Date(data.starttime));
-      if (data.attempt) router.push("/");
+      localStorage.setItem("cross",data.crossword)
+      if (attempt && attempt != undefined) {
+        toast.error("Already attempted!", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        router.push("/");
+      } else if (!attempt) {
+        Getcross();
+      }
     });
-
-    if (attempt && attempt != undefined) {
-      toast.error("Already attempted!", {
-        position: "top-right",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      router.push("/");
-    } else if (!attempt) {
-      Getcross();
-    }
+ 
   }, []);
 
   async function Stopattempt() {
@@ -182,10 +183,10 @@ export default function CrosswordPuzzle() {
       setAttempt(true);
 
       setTimeout(() => {
-        cross.current.reset();
+        // cross.current.reset();
         router.push("/");
         logout(ResetAllState);
-      }, 5000);
+      }, 3000);
     } else {
       toast.error("Already attempted!", {
         position: "top-right",
@@ -199,66 +200,63 @@ export default function CrosswordPuzzle() {
     }
   }
 
-  // useEffect(() => {
-  //   // if (html) cross.current.reset();
-  // }, [html]);
-
+  const cross = useRef(null);
   function Getcross() {
-    let no = 1;
-    if (crossword) no = crossword;
-
-    const q = query(collection(db, "crossword"), where("name", "==", no));
-    getDocs(q).then((doc) => {
-      try {
-        const res = doc.docs[0].data().data;
-        const data = JSON.parse(res.split("'")[1]);
-        setHtml(
-          <>
-            <Crossword
-              data={data}
-              onCorrect={OnCorrect}
-              ref={cross}
-              useStorage={true}
-              theme={{
-                columnBreakpoint: "9999px",
-                gridBackground: "black",
-                cellBackground: "#ffe",
-                cellBorder: "grey",
-                textColor: "black",
-                numberColor: "blue",
-                focusBackground: "#f00",
-                highlightBackground: "#f99",
-              }}
-            />
-          </>
-        );
-      } catch {
-        if (attempt === "fresh" || !attempt)
-          setHtml(
-            <>
-              <Crossword
-                data={databackup}
-                onCorrect={OnCorrect}
-                ref={cross}
-                useStorage={true}
-                theme={{
-                  columnBreakpoint: "9999px",
-                  gridBackground: "black",
-                  cellBackground: "#ffe",
-                  cellBorder: "grey",
-                  textColor: "black",
-                  numberColor: "blue",
-                  focusBackground: "#f00",
-                  highlightBackground: "#f99",
-                }}
-              />
-            </>
-          );
-      }
-    });
+    const res1 = getCrossword(localStorage.getItem("cross"));
+    res1.then((doc) => {
+    let data = ""
+    try{
+      data = JSON.parse(doc.data?.split("`")[1]);
+    }
+    catch {
+      data = JSON.parse(doc.data?.split("'")[1]);
+    }
+    try{
+     setHtml(
+      <>
+        <Crossword
+          data={data}
+          onCorrect={OnCorrect}
+          ref={cross}
+          useStorage={true}
+          theme={{
+            columnBreakpoint: "9999px",
+            gridBackground: "black",
+            cellBackground: "#ffe",
+            cellBorder: "grey",
+            textColor: "black",
+            numberColor: "blue",
+            focusBackground: "#f00",
+            highlightBackground: "#f99",
+          }}
+        />
+      </>
+    );}
+    catch {
+      setHtml(
+        <>
+          <Crossword
+            data={databack}
+            onCorrect={OnCorrect}
+            ref={cross}
+            useStorage={true}
+            theme={{
+              columnBreakpoint: "9999px",
+              gridBackground: "black",
+              cellBackground: "#ffe",
+              cellBorder: "grey",
+              textColor: "black",
+              numberColor: "blue",
+              focusBackground: "#f00",
+              highlightBackground: "#f99",
+            }}
+          />
+        </>
+      )
+    };
+  })
   }
 
-  const cross = useRef(null);
 
   return (
     <>
@@ -284,7 +282,7 @@ export default function CrosswordPuzzle() {
 
       <div style={{ width: "65%" }} className={styles.main}>
         {/* Cross */}
-        {html ? html : <div>Loading</div>}
+        {html ? html : <div>Loading...</div>}
       </div>
 
       <button
